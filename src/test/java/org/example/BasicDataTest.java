@@ -1,50 +1,33 @@
 package org.example;
 
-import org.junit.jupiter.api.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import javax.swing.text.Utilities;
+import static org.junit.Assert.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class BasicDataTest {
+public class BasicDataTest {
     BasicData basicData;
 
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         this.basicData = new BasicData(0, "test", "password");
     }
 
-    @AfterEach
-    void tearDown() {
-
+    @After
+    public void tearDown() {
+        this.basicData = null;
     }
 
     @Test
-    void getID() {
+    public void getID() {
         assertEquals(0, this.basicData.getID());
+        assertNotEquals(1, this.basicData.getID());
     }
 
     @Test
-    void getName() {
-    }
-
-    @Test
-    void getPassword() {
-    }
-
-    @Test
-    void setID() {
-    }
-
-    @Test
-    void setName() {
-    }
-
-    @Test
-    void setPassword() {
-    }
-
-    @Test
-    void print() {
+    public void getName() {
+        assertSame("test", this.basicData.getName());
+        assertNotSame("", this.basicData.getName());
     }
 }
